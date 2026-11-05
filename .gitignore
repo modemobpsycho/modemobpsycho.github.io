@@ -1,0 +1,13 @@
+# local helper junk
+.tmp/
+.pylibs/
+__pycache__/
+*.pyc
+
+# source material (old CV, photo original)
+source/
+
+# OS noise
+.DS_Store
+Thumbs.db
+desktop.ini

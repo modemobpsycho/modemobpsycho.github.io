@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Vadim Taratuta — CV</title>
+<link rel="stylesheet" href="assets/css/fonts.css">
+<style>
+  @page { size: A4; margin: 0; }
+
+  :root{
+    --ink:#0B0D11;
+    --ink-2:#3A3F49;
+    --ink-3:#6B7180;
+    --line:#D8D6D0;
+    --accent:#2B4BFF;
+    --font-body:"Inter", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+    --font-display:"Space Grotesk", "Inter", Arial, sans-serif;
+    --font-mono:"JetBrains Mono", ui-monospace, "Courier New", monospace;
+  }
+
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; padding:0; background:#8c8c8c; }
+  body{
+    font-family:var(--font-body);
+    color:var(--ink);
+    font-size:9.2pt;
+    line-height:1.38;
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+  }
+
+  .sheet{
+    width:210mm;
+    min-height:297mm;
+    padding:9.5mm 13.5mm 7mm;
+    background:#fff;
+    margin:0 auto 8mm;
+    position:relative;
+    display:flex;
+    flex-direction:column;
+  }
+  @media print{
+    body{ background:#fff; }
+    .sheet{ margin:0; }
+    .sheet + .sheet{ break-before:page; }
+  }
+  @media screen{
+    body{ padding:10mm 0; }
+    .sheet{ box-shadow:0 6px 24px rgba(0,0,0,.25); }
+  }
+
+  h1,h2,h3{ margin:0; font-weight:600; }
+  p{ margin:0; }
+  ul{ margin:0; padding:0; list-style:none; }
+  a{ color:inherit; text-decoration:none; }
+
+  /* ---------- header ---------- */
+  .head{
+    display:flex;
+    gap:6.5mm;
+    align-items:flex-start;
+    padding-bottom:4mm;
+    border-bottom:1px solid var(--line);
+  }
+  .photo{
+    width:31mm; height:31mm;
+    flex:0 0 auto;
+    border-radius:50%;
+    object-fit:cover;
+    background:#0A0C10;
+  }
+  .id{ flex:1 1 auto; min-width:0; }
+  .name{
+    font-family:var(--font-display);
+    font-size:22pt;
+    line-height:1;
+    letter-spacing:-.02em;
+  }
+  .role{
+    margin-top:2mm;
+    font-family:var(--font-display);
+    font-size:10pt;
+    color:var(--ink-2);
+  }
+  .role .slash{ color:var(--accent); padding:0 1mm; }
+  .role-stack{ font-family:var(--font-mono); font-size:8.6pt; letter-spacing:.02em; }
+  .summary{
+    margin-top:2.4mm;
+    font-size:8.8pt;
+    color:var(--ink-2);
+    max-width:150mm;
+  }
+
+  .contacts{
+    margin-top:3mm;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:1.2mm 6mm;
+    font-size:8.4pt;
+  }
+  .contacts li{
+    display:flex;
+    align-items:center;
+    gap:1.8mm;
+    color:var(--ink-2);
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+  .contacts li::before{
+    content:"";
+    flex:0 0 auto;
+    width:1.3mm; height:1.3mm;
+    border-radius:50%;
+    background:var(--accent);
+    opacity:.75;
+  }
+
+  /* ---------- sections ---------- */
+  .sec{ margin-top:4.2mm; }
+  .sec-head{
+    display:flex;
+    align-items:baseline;
+    gap:2.5mm;
+    margin-bottom:3mm;
+  }
+  .sec-head h2{
+    font-family:var(--font-mono);
+    font-size:8.2pt;
+    font-weight:500;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    white-space:nowrap;
+  }
+  .sec-head .slash{
+    font-family:var(--font-mono);
+    color:var(--accent);
+    font-size:8.2pt;
+  }
+  .sec-head .rule{
+    flex:1 1 auto;
+    height:1px;
+    background:var(--line);
+  }
+  .sec-note{
+    font-family:var(--font-mono);
+    font-size:7.2pt;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--ink-3);
+    white-space:nowrap;
+  }
+
+  /* ---------- jobs ---------- */
+  .job{ break-inside:avoid; padding-bottom:2.6mm; }
+  .job + .job{ border-top:1px dashed var(--line); padding-top:2.6mm; }
+  .job-head{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:4mm;
+  }
+  .job-head h3{
+    font-family:var(--font-display);
+    font-size:10.6pt;
+    letter-spacing:-.01em;
+  }
+  .job-head h3 span{ font-family:var(--font-body); font-weight:700; font-size:8.8pt; color:var(--ink); opacity:.78; }
+  .job-meta{
+    font-family:var(--font-mono);
+    font-size:7.4pt;
+    letter-spacing:.04em;
+    color:var(--ink-3);
+    text-align:right;
+    white-space:nowrap;
+  }
+  .job-sub{ margin-top:.8mm; color:var(--ink-2); font-size:8.8pt; }
+  .job ul{ margin-top:1.3mm; }
+  .job li{
+    position:relative;
+    padding-left:4mm;
+    margin-bottom:.7mm;
+    color:var(--ink-2);
+  }
+  .job li::before{
+    content:"";
+    position:absolute;
+    left:0; top:2.2mm;
+    width:2mm; height:1px;
+    background:var(--ink-3);
+  }
+  .job li strong{ color:var(--ink); font-weight:600; }
+  .job-chips{
+    margin-top:1.6mm;
+    display:flex;
+    flex-wrap:wrap;
+    gap:1mm;
+  }
+  .job-chips .pc{
+    font-family:var(--font-mono);
+    font-size:6.9pt;
+    line-height:1.3;
+    letter-spacing:.01em;
+    color:var(--ink-2);
+    border:.35mm solid #DCD8CE;
+    border-radius:1.1mm;
+    padding:.25mm 1.2mm;
+  }
+  .job-chips .pc.core{
+    color:var(--ink);
+    font-weight:600;
+    border-color:var(--ink-3);
+  }
+
+  /* ---------- projects ---------- */
+  .projects{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:2.8mm 7mm;
+  }
+  .proj{ break-inside:avoid; }
+  .proj h3{
+    font-family:var(--font-display);
+    font-size:9.4pt;
+    letter-spacing:-.005em;
+  }
+  .proj h3 span{ font-family:var(--font-mono); font-size:6.8pt; color:var(--accent); letter-spacing:.06em; margin-left:1.5mm; text-transform:uppercase; }
+  .proj p{ margin-top:.6mm; font-size:8.4pt; color:var(--ink-2); }
+  .proj .p-stack{
+    margin-top:.8mm;
+    font-family:var(--font-mono);
+    font-size:6.8pt;
+    letter-spacing:.03em;
+    color:var(--ink-3);
+  }
+  .proj .p-link{ font-size:7.2pt; color:var(--accent); }
+
+  .pets-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:5mm;
+    margin-top:1.6mm;
+  }
+  .pets-grid h4{
+    font-family:var(--font-display);
+    font-size:8.4pt;
+    font-weight:600;
+  }
+  .pets-grid p{
+    font-family:var(--font-mono);
+    font-size:6.6pt;
+    letter-spacing:.03em;
+    color:var(--ink-3);
+    margin-top:.3mm;
+  }
+  .pets-grid .p-link{ font-size:7pt; }
+
+  /* ---------- case study ---------- */
+  .case{
+    display:grid;
+    grid-template-columns:1.15fr 1fr;
+    gap:7mm;
+    break-inside:avoid;
+  }
+  .case-intro{ font-size:8.6pt; color:var(--ink-2); }
+  .apps{ margin-top:1.6mm; }
+  .apps li{
+    display:flex;
+    justify-content:space-between;
+    gap:4mm;
+    padding:.8mm 0;
+    border-bottom:1px dotted var(--line);
+    font-size:8.2pt;
+    color:var(--ink-2);
+  }
+  .apps li span:first-child{ color:var(--ink); }
+  .apps li span:last-child{
+    font-family:var(--font-mono);
+    font-size:6.8pt;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    color:var(--ink-3);
+    white-space:nowrap;
+  }
+  .decisions{ margin-top:1.6mm; }
+  .decisions li{
+    position:relative;
+    padding-left:4mm;
+    margin-bottom:1mm;
+    font-size:8.4pt;
+    color:var(--ink-2);
+  }
+  .decisions li::before{
+    content:"";
+    position:absolute;
+    left:0; top:2.1mm;
+    width:2mm; height:1px;
+    background:var(--ink-3);
+  }
+  .label{
+    font-family:var(--font-mono);
+    font-size:6.8pt;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--ink-3);
+    margin-top:2.4mm;
+  }
+
+  /* ---------- toolkit ---------- */
+  .toolkit{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:1.8mm 7mm;
+  }
+  .tk h3{
+    font-family:var(--font-mono);
+    font-size:7.2pt;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--ink-3);
+    margin-bottom:1mm;
+  }
+  .tk p{ font-size:8.6pt; color:var(--ink-2); }
+  .tk b{ color:var(--ink); font-weight:600; }
+
+  /* ---------- two-up ---------- */
+  .two-up{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8mm;
+  }
+  .edu h3{ font-family:var(--font-display); font-size:9.8pt; margin-top:.6mm; }
+  .edu p{ font-size:8.6pt; color:var(--ink-2); }
+  .edu .years{ font-family:var(--font-mono); font-size:7.2pt; letter-spacing:.08em; color:var(--ink-3); }
+  .langs li{ display:flex; justify-content:space-between; gap:4mm; font-size:8.6pt; color:var(--ink-2); padding:.9mm 0; border-bottom:1px dotted var(--line); }
+  .langs li span:last-child{ font-family:var(--font-mono); font-size:7.4pt; color:var(--ink-3); }
+
+  .foot{
+    position:absolute;
+    left:13.5mm; right:13.5mm; bottom:8mm;
+    display:flex;
+    justify-content:space-between;
+    font-family:var(--font-mono);
+    font-size:6.6pt;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--ink-3);
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ PAGE 1 ============ -->
+<div class="sheet">
+  <header class="head">
+    <img class="photo" src="assets/img/photo-circle-420.png" alt="">
+    <div class="id">
+      <h1 class="name">Vadim Taratuta</h1>
+      <p class="role">Full Stack Engineer <span class="slash">/</span> <span class="role-stack">React · NestJS · TypeScript</span></p>
+      <p class="summary">Full-stack engineer with 1.5 years of commercial experience building product web apps: typed React front ends, NestJS APIs over Prisma, and shared design systems. Worked across US home services, healthcare and e-commerce.</p>
+      <ul class="contacts">
+        <li>modemobgpt@gmail.com</li>
+        <li>@obsessionmode</li>
+        <li>linkedin.com/in/vadim-taratuta-688192220</li>
+        <li>github.com/modemobpsycho</li>
+        <li>leetcode.com/modemobpsycho</li>
+        <li>codewars.com/users/modemobpsycho</li>
+        <li>modemobpsycho.github.io</li>
+      </ul>
+    </div>
+  </header>
+
+  <section class="sec" style="margin-top:4.4mm">
+    <div class="sec-head">
+      <h2>Experience</h2><span class="slash">/</span><span class="rule"></span>
+      <span class="sec-note">2024 — 2025 · 3 roles</span>
+    </div>
+
+    <article class="job">
+      <div class="job-head">
+        <h3>Full Stack Engineer <span>· Yellow Systems</span></h3>
+        <span class="job-meta">Dec 2024 — Nov 2025<br>Remote</span>
+      </div>
+      <p class="job-sub">CHHJ (College H.U.N.K.S.) — a US home-services franchise with 10M+ customers served and 1M+ reviews. Five internal web apps on one Nx monorepo.</p>
+      <ul>
+        <li>Shipped features across five internal products — <strong>Online Customer Service</strong>, <strong>Tasks</strong>, <strong>Crew</strong>, <strong>Agent Booking Tool</strong> and <strong>Move Estimating Tool</strong> — and owned full-stack work on Tasks: React UI, NestJS controllers and services.</li>
+        <li>Helped shape the monorepo's CI/CD: wrote and reviewed GitHub Actions pipeline files while shipping large changes — individual PRs of 10–15k added or rewritten lines.</li>
+        <li>Contributed components to <strong>Oasis</strong>, the shared MUI v4 design system with Storybook, keeping five product surfaces visually consistent.</li>
+        <li>Worked across two stack generations: legacy Redux Toolkit + Yup + TypeORM/MySQL, and the newer Effector + Zod + Prisma/MongoDB behind a NestJS 11 / Fastify API.</li>
+      </ul>
+      <div class="job-chips"><span class="pc core">React</span><span class="pc core">NestJS</span><span class="pc">TypeScript</span><span class="pc">Effector</span><span class="pc">Redux Toolkit</span><span class="pc">MUI</span><span class="pc">Prisma</span><span class="pc">TypeORM</span><span class="pc">MySQL</span><span class="pc">MongoDB</span><span class="pc">Redis</span><span class="pc">Docker</span><span class="pc">AWS</span></div>
+    </article>
+
+    <article class="job">
+      <div class="job-head">
+        <h3>Full Stack Developer <span>· Krainet</span></h3>
+        <span class="job-meta">Aug 2024 — Nov 2024<br>Remote</span>
+      </div>
+      <p class="job-sub">Three client products in four months: a medical portal, a national railway site and an e-commerce storefront.</p>
+      <ul>
+        <li><strong>LeoDoc</strong> — fixed critical bugs in a patient health-records portal (Django + React) ahead of the company selling the project.</li>
+        <li><strong>rw.by</strong> — rebuilt the front end of the Belarusian Railway's public site; reviewed and refactored legacy vanilla JS.</li>
+        <li><strong>Sontsa</strong> — continued front-end development of a household-chemicals shop: new features and code review.</li>
+      </ul>
+      <div class="job-chips"><span class="pc core">Django</span><span class="pc core">React</span><span class="pc">Python</span><span class="pc">Vanilla JS</span><span class="pc">HTML/CSS</span></div>
+    </article>
+
+    <article class="job">
+      <div class="job-head">
+        <h3>Full Stack Engineer <span>· Itransition Group (internship)</span></h3>
+        <span class="job-meta">Jul 2024 — Sep 2024<br>Remote</span>
+      </div>
+      <p class="job-sub">Three full-stack apps built end to end during a three-month internship.</p>
+      <ul>
+        <li>Built <strong>Collections</strong>, <strong>Real-Time Paint Online</strong> and <strong>Fake User Data Generator</strong> — both client and server.</li>
+        <li>React + Redux Toolkit / RTK Query on the front end; Express and NestJS + Prisma + PostgreSQL on the back end.</li>
+        <li>Real-time collaboration over Socket.io, typed REST contracts, and unit tests with Jest and Vitest.</li>
+      </ul>
+      <div class="job-chips"><span class="pc core">React</span><span class="pc core">Express</span><span class="pc">NestJS</span><span class="pc">PostgreSQL</span><span class="pc">Prisma</span><span class="pc">Socket.io</span><span class="pc">Jest</span><span class="pc">Vitest</span></div>
+    </article>
+  </section>
+
+  <section class="sec">
+    <div class="sec-head">
+      <h2>Toolkit</h2><span class="slash">/</span><span class="rule"></span><span class="sec-note">daily drivers in bold</span>
+    </div>
+    <div class="toolkit">
+      <div class="tk">
+        <h3>Frontend</h3>
+        <p><b>React</b>, <b>TypeScript</b>, Vite, TanStack Query, Effector, Redux Toolkit, RTK Query, Zustand, React Hook Form, MUI, Ant Design, Tailwind, SASS, Storybook, Socket.io</p>
+      </div>
+      <div class="tk">
+        <h3>Backend</h3>
+        <p><b>NestJS</b>, <b>Express</b>, Fastify, Prisma, TypeORM, REST, JWT Auth, Zod, TS-Rest, OpenAPI, Django, DRF, Flask, FastAPI, SQLAlchemy</p>
+      </div>
+      <div class="tk">
+        <h3>Data &amp; infra</h3>
+        <p><b>PostgreSQL</b>, <b>Docker</b>, MySQL, MongoDB, Redis, SQLite, AWS, GitHub Actions, Nx</p>
+      </div>
+      <div class="tk">
+        <h3>Quality &amp; tools</h3>
+        <p><b>Git</b>, Jest, Vitest, Playwright, React Testing Library, Pytest, Jira, Figma, Postman, Linux</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="foot"><span>Vadim Taratuta — CV</span><span>Page 1 / 2</span></div>
+</div>
+
+<!-- ============ PAGE 2 ============ -->
+<div class="sheet">
+  <section class="sec" style="margin-top:0">
+    <div class="sec-head">
+      <h2>Selected work</h2><span class="slash">/</span><span class="rule"></span>
+      <span class="sec-note">company products → side projects</span>
+    </div>
+    <div class="projects">
+      <div class="proj">
+        <h3>CHHJ Platform <span>Yellow</span></h3>
+        <p>Operations and booking suite: customer service, tasks, crew app, booking and estimating tools on one Nx monorepo.</p>
+        <p class="p-stack">React · NestJS · Prisma · MongoDB · Docker · AWS</p>
+      </div>
+      <div class="proj">
+        <h3>LeoDoc <span>Krainet</span></h3>
+        <p>Patient portal for health records and lab results — stabilised critical flows before the project changed hands.</p>
+        <p class="p-stack">Django · React</p>
+        <p class="p-link">leodoc24.ai</p>
+      </div>
+      <div class="proj">
+        <h3>rw.by Redesign <span>Krainet</span></h3>
+        <p>Public site of the Belarusian Railway — new front end on a legacy Python back end; review of the existing code.</p>
+        <p class="p-stack">Vanilla JS · HTML/CSS · Python</p>
+        <p class="p-link">rw.by</p>
+      </div>
+      <div class="proj">
+        <h3>Sontsa Store <span>Krainet</span></h3>
+        <p>Household-chemicals e-commerce: new storefront features on an existing codebase, plus code review.</p>
+        <p class="p-stack">Frontend · E-commerce</p>
+        <p class="p-link">shop.sontsa.by</p>
+      </div>
+      <div class="proj">
+        <h3>Collections <span>Itransition</span></h3>
+        <p>Personal collections manager with OAuth2 sign-in and Jira issue sync.</p>
+        <p class="p-stack">React · Express · PostgreSQL · Prisma</p>
+      </div>
+      <div class="proj">
+        <h3>Real-Time Paint Online <span>Itransition</span></h3>
+        <p>Multiplayer drawing canvas — rooms, strokes and presence over WebSockets.</p>
+        <p class="p-stack">React · Socket.io · Prisma · PostgreSQL</p>
+      </div>
+      <div class="proj">
+        <h3>Fake User Data Generator <span>Itransition</span></h3>
+        <p>Realistic test datasets on demand — React client, typed Express API with Faker.</p>
+        <p class="p-stack">React · Express · TypeScript · Faker</p>
+      </div>
+      <div class="proj">
+        <h3>Crypto Dashboard <span>Pet</span></h3>
+        <p>Live coin market dashboard with context state and a custom chart view.</p>
+        <p class="p-stack">React · Ant Design · Express</p>
+        <p class="p-link">github.com/modemobpsycho/react-crypto-website</p>
+      </div>
+    </div>
+    <div class="pets">
+      <p class="label" style="margin-top:2.6mm">More from GitHub — a few of many builds</p>
+      <div class="pets-grid">
+        <div><h4>Project Tracker</h4><p>Flask · PostgreSQL · Socket.IO</p><a class="p-link" href="https://github.com/modemobpsycho/flask-project-tracker">flask-project-tracker</a></div>
+        <div><h4>Sneaker Store</h4><p>Flask · SQLAlchemy · Jinja2</p><a class="p-link" href="https://github.com/modemobpsycho/flask-sneaker-store">flask-sneaker-store</a></div>
+        <div><h4>Pizza Shop Bot</h4><p>aiogram3 · PostgreSQL · FSM</p><a class="p-link" href="https://github.com/modemobpsycho/aiogram3-tg-bot-store">aiogram3-tg-bot-store</a></div>
+        <div><h4>Weather App</h4><p>React · RTK Query · Tailwind</p><a class="p-link" href="https://github.com/modemobpsycho/weather-web-app">weather-web-app</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-head">
+      <h2>Case study</h2><span class="slash">/</span><span class="rule"></span><span class="sec-note">CHHJ platform · 2024 — 2025</span>
+    </div>
+    <div class="case">
+      <div>
+        <p class="case-intro">A US home-services franchise running its field operations on a suite of web apps built from one Nx monorepo. I worked across five of them and in the shared design system.</p>
+        <ul class="apps">
+          <li><span>Online Customer Service</span><span>full-stack</span></li>
+          <li><span>Tasks</span><span>full-stack</span></li>
+          <li><span>Crew</span><span>full-stack</span></li>
+          <li><span>Agent Booking Tool</span><span>frontend</span></li>
+          <li><span>Move Estimating Tool</span><span>frontend</span></li>
+          <li><span>Oasis design system</span><span>shared UI</span></li>
+        </ul>
+      </div>
+      <div>
+        <p class="label">Engineering decisions</p>
+        <ul class="decisions">
+          <li>Contract-driven development: TS-Rest + Zod and OpenAPI/Swagger as the single source of truth between client and API.</li>
+          <li>Nx monorepo with shared libraries for types, UI and API clients — one version of every contract.</li>
+          <li>Two generations of stack coexisting: Redux Toolkit + TypeORM/MySQL, and Effector + Zod + Prisma over MongoDB/Redis.</li>
+          <li>Four environments — Development, Testing, Training, Production — provisioned as code.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-head">
+      <h2>Education &amp; languages</h2><span class="slash">/</span><span class="rule"></span>
+    </div>
+    <div class="two-up">
+      <div class="edu">
+        <p class="years">2021 — 2025</p>
+        <h3>BSUIR</h3>
+        <p>Belarusian State University of Informatics and Radioelectronics</p>
+        <p><strong>Engineer-Programmer</strong> / Game Design</p>
+      </div>
+      <div class="edu">
+        <p class="years">Languages</p>
+        <ul class="langs">
+          <li><span>English</span><span>B1 · intermediate</span></li>
+          <li><span>Russian</span><span>native</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="foot"><span>Vadim Taratuta — CV</span><span>Page 2 / 2</span></div>
+</div>
+
+</body>
+</html>
